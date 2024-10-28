@@ -1,13 +1,14 @@
-<?php 
+<?php
 
 namespace App\Http\Controllers\Grades;
+
 use App\Http\Controllers\Controller;
 use App\Grade;
 use App\Http\Requests\StoreGrade;
-use Illuminate\Http\Request;
 
 
-class GradeController extends Controller 
+
+class GradeController extends Controller
 {
 
   /**
@@ -18,7 +19,7 @@ class GradeController extends Controller
   public function index()
   {
     $grades = Grade::all();
-    return view('pages.grades.index',compact('grades'));
+    return view('pages.grades.index', compact('grades'));
   }
 
   /**
@@ -26,10 +27,7 @@ class GradeController extends Controller
    *
    * @return Response
    */
-  public function create()
-  {
-    
-  }
+  public function create() {}
 
   /**
    * Store a newly created resource in storage.
@@ -38,23 +36,27 @@ class GradeController extends Controller
    */
   public function store(StoreGrade $request)
   {
+    if (Grade::where('Name->ar', $request->Name)->orWhere('Name->en', $request->Name_en)->exists()) {
 
-   try{
-    $validated = $request->validated();
-    
-    $grade = new Grade();
-    $grade->Name = [
-      'en' => $request->Name_en,
-      'ar' => $request->Name];
-    $grade->Notes = $request->Notes;
-    $grade->save();
-    
+      return redirect()->back()->withErrors(trans('Grades.exists'));
+    }
+
+    try {
+      $validated = $request->validated();
+
+      $grade = new Grade();
+      $grade->Name = [
+        'en' => $request->Name_en,
+        'ar' => $request->Name
+      ];
+      $grade->Notes = $request->Notes;
+      $grade->save();
+
       toastr()->success('messages.success');
-    return redirect()->route('grades.index');
-
-   }catch(\Exception $e){
-    return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-   }
+      return redirect()->route('grades.index');
+    } catch (\Exception $e) {
+      return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }
   }
 
   /**
@@ -63,10 +65,7 @@ class GradeController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function show($id)
-  {
-    
-  }
+  public function show($id) {}
 
   /**
    * Show the form for editing the specified resource.
@@ -74,10 +73,7 @@ class GradeController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function edit($id)
-  {
-    
-  }
+  public function edit($id) {}
 
   /**
    * Update the specified resource in storage.
@@ -85,26 +81,25 @@ class GradeController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id,StoreGrade $request)
+  public function update($id, StoreGrade $request)
   {
 
-    try{
+    try {
       $validated = $request->validated();
-      
+
       $grade = Grade::findOrFail($id);
       $grade->Name = [
         'en' => $request->Name_en,
-        'ar' => $request->Name];
+        'ar' => $request->Name
+      ];
       $grade->Notes = $request->Notes;
       $grade->save();
-      
-        toastr()->success('messages.Update');
+
+      toastr()->success('messages.Update');
       return redirect()->route('grades.index');
-  
-     }catch(\Exception $e){
+    } catch (\Exception $e) {
       return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-     }
-    
+    }
   }
 
   /**
@@ -113,21 +108,16 @@ class GradeController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function destroy($id,Request $request)
+  public function destroy($id)
   {
-    
-    try{
+
+    try {
       $grade = Grade::findOrFail($id);
       $grade->delete();
       toastr()->success('messages.Delete');
       return redirect()->route('grades.index');
-  
-     }catch(\Exception $e){
+    } catch (\Exception $e) {
       return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-     }
-    
+    }
   }
-  
 }
-
-?>

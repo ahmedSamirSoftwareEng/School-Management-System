@@ -33,15 +33,24 @@ Route::group(
         //     return view('dashboard');
         // });
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
-        
+
 
         Route::group(
             [
-            'namespace' => 'Grades',
+                'namespace' => 'Grades',
             ],
             function () {
                 Route::resource('grades', 'GradeController');
+            }
+        );
+        Route::group(
+            [
+                'namespace' => 'Classrooms',
+            ],
+            function () {
+                Route::resource('Classrooms', 'ClassroomController');
 
-            });
+            }
+        );
     }
 );
