@@ -1,37 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+use App\Http\Controllers\GradeController;
+use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 
 
 Route::group(
     [
         'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){ 
-       
-	Route::get('/', function()
-	{
-        return view('dashboard');
-	});
-    });
+        'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath']
+    ],
+    function () {
 
-// routes/web.php
-
-Route::group(['prefix' => LaravelLocalization::setLocale()], function()
-{
-	
-
-});
-
-
+        Route::get('/', function () {
+            return view('dashboard');
+        });
+        Route::resource('grade', GradeController::class);
+    }
+);
