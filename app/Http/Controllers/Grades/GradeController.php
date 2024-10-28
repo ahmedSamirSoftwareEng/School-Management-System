@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Grades;
 use App\Http\Controllers\Controller;
 use App\Grade;
 use App\Http\Requests\StoreGrade;
+use Illuminate\Http\Request;
 
 
 class GradeController extends Controller 
@@ -84,8 +85,25 @@ class GradeController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id)
+  public function update($id,StoreGrade $request)
   {
+
+    try{
+      $validated = $request->validated();
+      
+      $grade = Grade::findOrFail($id);
+      $grade->Name = [
+        'en' => $request->Name_en,
+        'ar' => $request->Name];
+      $grade->Notes = $request->Notes;
+      $grade->save();
+      
+        toastr()->success('messages.Update');
+      return redirect()->route('grades.index');
+  
+     }catch(\Exception $e){
+      return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+     }
     
   }
 
@@ -95,8 +113,18 @@ class GradeController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function destroy($id)
+  public function destroy($id,Request $request)
   {
+    
+    try{
+      $grade = Grade::findOrFail($id);
+      $grade->delete();
+      toastr()->success('messages.Delete');
+      return redirect()->route('grades.index');
+  
+     }catch(\Exception $e){
+      return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+     }
     
   }
   
