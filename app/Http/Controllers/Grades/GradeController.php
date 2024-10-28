@@ -1,8 +1,10 @@
 <?php 
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Grades;
+use App\Http\Controllers\Controller;
+use App\Grade;
+use App\Http\Requests\StoreGrade;
 
-use Illuminate\Http\Request;
 
 class GradeController extends Controller 
 {
@@ -14,7 +16,8 @@ class GradeController extends Controller
    */
   public function index()
   {
-    
+    $grades = Grade::all();
+    return view('pages.grades.index',compact('grades'));
   }
 
   /**
@@ -32,9 +35,25 @@ class GradeController extends Controller
    *
    * @return Response
    */
-  public function store(Request $request)
+  public function store(StoreGrade $request)
   {
+
+   try{
+    $validated = $request->validated();
     
+    $grade = new Grade();
+    $grade->Name = [
+      'en' => $request->Name_en,
+      'ar' => $request->Name];
+    $grade->Notes = $request->Notes;
+    $grade->save();
+    
+      toastr()->success('messages.success');
+    return redirect()->route('grades.index');
+
+   }catch(\Exception $e){
+    return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+   }
   }
 
   /**

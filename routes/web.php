@@ -1,25 +1,25 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\GradeController;
 use App\Http\Controllers\HomeController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Facades\Auth;
+
+
 
 
 Auth::routes();
 
 Route::group(
     [
-    'middleware' => ['guest'],
+        'middleware' => ['guest'],
     ],
     function () {
         Route::get('/', function () {
             return view('auth.login');
         });
-    });
-
-
+    }
+);
 
 
 Route::group(
@@ -33,7 +33,15 @@ Route::group(
         //     return view('dashboard');
         // });
         Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+        
 
-        Route::resource('grade', GradeController::class);
+        Route::group(
+            [
+            'namespace' => 'Grades',
+            ],
+            function () {
+                Route::resource('grades', 'GradeController');
+
+            });
     }
 );
