@@ -134,4 +134,10 @@ class ClassroomController extends Controller
     toastr()->success(trans('messages.Delete'));
     return redirect()->route('Classrooms.index');
   }
+  public function Filter_Classes(Request $request){
+    // dd($request->all());
+    $My_Classes = Classroom::where('Grade_id', $request->Grade_id)->get();
+    $Grades = Grade::all();
+    return view('pages.classrooms.index', compact('My_Classes', 'Grades'));
+  }
 }

@@ -19,6 +19,7 @@ return [
     'Delete'=>'Delete',
     'Close' => 'Close',
     "delete_checkbox" => "Are you sure of the deleting process?",
+    "Search_By_Grade"=>"Search By Grade",
 
 
 

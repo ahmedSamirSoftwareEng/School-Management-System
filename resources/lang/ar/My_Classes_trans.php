@@ -19,6 +19,7 @@ return [
     'Delete'=>'حذف',
     'Close' => 'اغلاق',
     "delete_checkbox" => "هل تريد حذف الصفوف المحددة ؟",
+    "Search_By_Grade"=>"ابحث عن طريق المرحلة",
 
 
 
