@@ -18,6 +18,7 @@ return [
     'Edit'=>'Edit',
     'Delete'=>'Delete',
     'Close' => 'Close',
+    "delete_checkbox" => "Are you sure of the deleting process?",
 
 
 

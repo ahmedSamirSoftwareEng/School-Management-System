@@ -49,6 +49,7 @@ Route::group(
             ],
             function () {
                 Route::resource('Classrooms', 'ClassroomController');
+                Route::post('delete_all', 'ClassroomController@delete_all')->name('delete_all');
 
             }
         );

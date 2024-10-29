@@ -14,7 +14,7 @@
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb pt-0 pr-0 float-left float-sm-right ">
-            
+
             </ol>
         </div>
     </div>
@@ -48,6 +48,10 @@
                 <button type="button" class="button x-small" data-toggle="modal" data-target="#exampleModal">
                     {{ trans('My_Classes_trans.add_class') }}
                 </button>
+                <button type="button" class="button x-small" id="btn_delete_all">
+                    {{ trans('My_Classes_trans.delete_checkbox') }}
+                </button>
+
                 <br><br>
 
                 <div class="table-responsive">
@@ -55,6 +59,9 @@
                         style="text-align: center">
                         <thead>
                             <tr>
+                                <th><input name="select_all" id="example-select-all" type="checkbox"
+                                        onclick="CheckAll('box1', this)" /></th>
+
                                 <th>#</th>
                                 <th>{{ trans('My_Classes_trans.Name') }}</th>
                                 <th>{{ trans('My_Classes_trans.Name_Grade') }}</th>
@@ -66,6 +73,7 @@
                             @foreach ($My_Classes as $My_Class)
                                 <tr>
                                     <?php $i++; ?>
+                                    <td><input type="checkbox" value="{{ $My_Class->id }}" class="box1"></td>
                                     <td>{{ $i }}</td>
                                     <td>{{ $My_Class->Name }}</td>
                                     <td>{{ $My_Class->Grade->Name }}</td>
@@ -294,6 +302,38 @@
         </div>
 
     </div>
+    <!-- حذف مجموعة صفوف -->
+    <div class="modal fade" id="delete_all" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 style="font-family: 'Cairo', sans-serif;" class="modal-title" id="exampleModalLabel">
+                        {{ trans('My_Classes_trans.delete_class') }}
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <form action="{{ route('delete_all') }}" method="POST">
+                    {{ csrf_field() }}
+                    <div class="modal-body">
+                        {{ trans('My_Classes_trans.Warning_Grade') }}
+                        <input class="text" type="hidden" id="delete_all_id" name="delete_all_id"
+                            value=''>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary"
+                            data-dismiss="modal">{{ trans('My_Classes_trans.Close') }}</button>
+                        <button type="submit" class="btn btn-danger">{{ trans('My_Classes_trans.submit') }}</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
 </div>
 </div>
 
@@ -304,4 +344,21 @@
 @section('js')
 @toastr_js
 @toastr_render
+
+
+<script type="text/javascript">
+    $(function() {
+        $("#btn_delete_all").click(function() {
+            var selected = new Array();
+            $("#datatable input[type=checkbox]:checked").each(function() {
+                selected.push(this.value);
+            });
+
+            if (selected.length > 0) {
+                $('#delete_all').modal('show')
+                $('input[id="delete_all_id"]').val(selected);
+            }
+        });
+    });
+</script>
 @endsection

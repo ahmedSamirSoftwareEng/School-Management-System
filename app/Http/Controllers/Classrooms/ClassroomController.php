@@ -125,4 +125,13 @@ class ClassroomController extends Controller
       return redirect()->back()->withErrors(['error' => $e->getMessage()]);
     }
   }
+  public function delete_all(Request $request){
+    // dd($request->all());
+    $delete_all_id = explode(",",$request->delete_all_id);
+    // dd($delete_all_id);
+    $Classrooms = Classroom::whereIn('id', $delete_all_id)->delete();
+    // dd($Classrooms);
+    toastr()->success(trans('messages.Delete'));
+    return redirect()->route('Classrooms.index');
+  }
 }
