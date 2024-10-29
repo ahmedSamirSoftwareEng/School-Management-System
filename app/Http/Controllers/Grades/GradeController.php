@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Grades;
 
 use App\Http\Controllers\Controller;
 use App\Grade;
+use App\Classroom;
 use App\Http\Requests\StoreGrade;
 
 
@@ -111,8 +112,15 @@ class GradeController extends Controller
   public function destroy($id)
   {
 
+
     try {
       $grade = Grade::findOrFail($id);
+
+
+      $classrooms = Classroom::where('grade_id', $id)->pluck('grade_id');
+      if (count($classrooms) > 0) {
+        return redirect()->back()->withErrors(['error' => trans('Grades.delete_Grade_Error')]);
+      }
       $grade->delete();
       toastr()->success('messages.Delete');
       return redirect()->route('grades.index');
