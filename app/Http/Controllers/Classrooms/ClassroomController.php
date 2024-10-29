@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Classrooms;
 use App\Http\Controllers\Controller;
 use App\Classroom;
 use App\Grade;
+use App\Http\Requests\StoreClassroom;
 use Illuminate\Http\Request;
 
 class ClassroomController extends Controller
@@ -17,9 +18,9 @@ class ClassroomController extends Controller
    */
   public function index()
   {
-   $My_Classes = Classroom::all();
-   $Grades=Grade::all();
-    return view('pages.classrooms.index', compact('My_Classes','Grades'));
+    $My_Classes = Classroom::all();
+    $Grades = Grade::all();
+    return view('pages.classrooms.index', compact('My_Classes', 'Grades'));
   }
 
   /**
@@ -34,7 +35,34 @@ class ClassroomController extends Controller
    *
    * @return Response
    */
-  public function store(Request $request) {}
+  public function store(StoreClassroom $request)
+  {
+    // dd($request);
+
+    try {
+      $List_Classes = $request->List_Classes;
+
+      foreach ($List_Classes as $List_Class) {
+
+        $My_Classes  = new Classroom();
+
+        $My_Classes->Name = [
+          'en' => $List_Class['Name_en'],
+          'ar' => $List_Class['Name'],
+        ];
+
+        $My_Classes->Grade_id = $List_Class['Grade_id'];
+
+        $My_Classes->save();
+
+        toastr()->success(trans('messages.success'));
+      }
+    } catch (\Exception $e) {
+
+      return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }
+    return redirect()->route('Classrooms.index');
+  }
 
   /**
    * Display the specified resource.
@@ -58,7 +86,25 @@ class ClassroomController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function update($id) {}
+  public function update(Request $request)
+  {
+    // dd($request);
+
+    try {
+
+      $Classrooms = Classroom::findOrFail($request->id);
+
+      $Classrooms->update([
+
+        $Classrooms->Name = ['ar' => $request->Name, 'en' => $request->Name_en],
+        $Classrooms->Grade_id = $request->Grade_id,
+      ]);
+      toastr()->success(trans('messages.Update'));
+      return redirect()->route('Classrooms.index');
+    } catch (\Exception $e) {
+      return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }
+  }
 
   /**
    * Remove the specified resource from storage.
@@ -66,5 +112,17 @@ class ClassroomController extends Controller
    * @param  int  $id
    * @return Response
    */
-  public function destroy($id) {}
+  public function destroy($id)
+  {
+
+
+    try {
+      $Classrooms = Classroom::findOrFail($id);
+      $Classrooms->delete();
+      toastr()->success(trans('messages.Delete'));
+      return redirect()->route('Classrooms.index');
+    } catch (\Exception $e) {
+      return redirect()->back()->withErrors(['error' => $e->getMessage()]);
+    }
+  }
 }
