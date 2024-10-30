@@ -14,10 +14,7 @@
                         </a>
                         <ul id="dashboard" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="index.html">Dashboard 01</a> </li>
-                            <li> <a href="index-02.html">Dashboard 02</a> </li>
-                            <li> <a href="index-03.html">Dashboard 03</a> </li>
-                            <li> <a href="index-04.html">Dashboard 04</a> </li>
-                            <li> <a href="index-05.html">Dashboard 05</a> </li>
+                            
                         </ul>
                     </li>
                     <!-- menu title -->
@@ -34,8 +31,9 @@
                             <li><a href="{{route('grades.index')}}">{{trans('main_sidebar.Grades_list')}}</a></li>
                         
                         </ul>
+                        
                     </li>
-                    <!-- menu item calendar-->
+                    <!-- menu item classrooms-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#calendar-menu">
                             <div class="pull-left"><i class="ti-calendar"></i><span
@@ -45,6 +43,19 @@
                         </a>
                         <ul id="calendar-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href={{route('Classrooms.index')}}>{{trans('main_sidebar.classes_list')}} </a> </li>
+                            <li> <a href="calendar-list.html">List Calendar</a> </li>
+                        </ul>
+                    </li>
+                    <!-- menu item sections-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#sec-menu">
+                            <div class="pull-left"><i class="ti-calendar"></i><span
+                                    class="right-nav-text">{{trans('main_sidebar.section')}}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="sec-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href={{route('Sections.index')}}>{{trans('main_sidebar.section_list')}} </a> </li>
                             <li> <a href="calendar-list.html">List Calendar</a> </li>
                         </ul>
                     </li>
