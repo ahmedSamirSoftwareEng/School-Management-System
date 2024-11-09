@@ -27,5 +27,7 @@ return [
     'Settings' => 'Settings',
     'Users' => 'Users',
     'Copyright' => 'Copyright',
-    'Name_Programer' => 'ahmed All Rights Reserved'
+    'Name_Programer' => 'ahmed All Rights Reserved',
+    'Teachers' => 'Teachers',
+    'List_Teachers' => 'List Teachers',
 ];

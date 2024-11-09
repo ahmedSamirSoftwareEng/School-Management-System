@@ -329,12 +329,23 @@
                                     </select>
                                 </div>
                                 <br>
-
+                                {{-- classroom --}}
                                 <div class="col">
                                     <label for="inputName"
                                         class="control-label">{{ trans('Sections_trans.Name_Class') }}</label>
                                     <select name="Class_id" class="custom-select">
 
+                                    </select>
+                                </div>
+                                {{-- teacher --}}
+                                <div class="col">
+                                    <label for="inputName"
+                                        class="control-label">{{ trans('main_sidebar.Teachers') }}</label>
+                                    <select multiple name="teacher_id[]" class="form-control"
+                                        id="exampleFormControlSelect2">
+                                        @foreach ($teachers as $teacher)
+                                            <option value="{{ $teacher->id }}">{{ $teacher->Name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -365,7 +376,7 @@
             var Grade_id = $(this).val();
             if (Grade_id) {
                 // console.log("Grade_id", Grade_id);
-                
+
                 $.ajax({
                     url: "{{ URL::to('classes') }}/" + Grade_id,
                     type: "GET",

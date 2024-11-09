@@ -48,6 +48,18 @@
                             <li> <a href="calendar-list.html">List Calendar</a> </li>
                         </ul>
                     </li>
+                    <!-- Parents-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Parents-menu">
+                            <div class="pull-left"><i class="ti-user"></i><span
+                                    class="right-nav-text">{{ trans('main_sidebar.Parents') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="Parents-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ url('add_parent') }}">{{ trans('main_sidebar.List_Parents') }}</a> </li>
+                        </ul>
+                    </li>
                     <!-- menu item sections-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#sec-menu">
@@ -61,31 +73,19 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- Parents-->
+
+                    <!-- Teachers-->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Parents-menu">
-                            <div class="pull-left"><i class="ti-user"></i><span
-                                    class="right-nav-text">{{ trans('main_sidebar.Parents') }}</span></div>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Teachers-menu">
+                            <div class="pull-left"><i class="ti-user "></i></i><span
+                                    class="right-nav-text">{{ trans('main_sidebar.Teachers') }}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
-                        <ul id="Parents-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{ url('add_parent') }}">{{ trans('main_sidebar.List_Parents') }}</a> </li>                        </ul>
-                    </li>
-                    <!-- menu item todo-->
-                    <li>
-                        <a href="todo-list.html"><i class="ti-menu-alt"></i><span class="right-nav-text">Todo
-                                list</span> </a>
-                    </li>
-                    <!-- menu item chat-->
-                    <li>
-                        <a href="chat-page.html"><i class="ti-comments"></i><span class="right-nav-text">Chat
-                            </span></a>
-                    </li>
-                    <!-- menu item mailbox-->
-                    <li>
-                        <a href="mail-box.html"><i class="ti-email"></i><span class="right-nav-text">Mail
-                                box</span> <span class="badge badge-pill badge-warning float-right mt-1">HOT</span> </a>
+                        <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('Teachers.index') }}">{{ trans('main_sidebar.List_Teachers') }}</a>
+                            </li>
+                        </ul>
                     </li>
                     <!-- menu item Charts-->
                     <li>

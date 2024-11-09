@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Http\Controllers\Sections;
+
 use App\Http\Controllers\Controller;
 use App\Classroom;
 use App\Grade;
@@ -19,12 +21,12 @@ class SectionController extends Controller
   {
 
     $Grades = Grade::with(['Sections'])->get();
-  // dd($Grades);
+    // dd($Grades);
 
     $list_Grades = Grade::all();
+    $teachers = \App\Teacher::all();
 
-    return view('pages.Sections.Sections',compact('Grades','list_Grades'));
-
+    return view('pages.Sections.Sections', compact('Grades', 'list_Grades', 'teachers'));
   }
 
   /**
@@ -34,6 +36,7 @@ class SectionController extends Controller
    */
   public function store(StoreSections $request)
   {
+
 
     try {
 
@@ -45,15 +48,14 @@ class SectionController extends Controller
       $Sections->Class_id = $request->Class_id;
       $Sections->Status = 1;
       $Sections->save();
+      $Sections->teachers()->attach($request->teacher_id);
+
       toastr()->success(trans('messages.success'));
 
       return redirect()->route('Sections.index');
-  }
-
-  catch (\Exception $e){
+    } catch (\Exception $e) {
       return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-  }
-
+    }
   }
 
 
@@ -74,7 +76,7 @@ class SectionController extends Controller
       $Sections->Grade_id = $request->Grade_id;
       $Sections->Class_id = $request->Class_id;
 
-      if(isset($request->Status)) {
+      if (isset($request->Status)) {
         $Sections->Status = 1;
       } else {
         $Sections->Status = 2;
@@ -84,12 +86,9 @@ class SectionController extends Controller
       toastr()->success(trans('messages.Update'));
 
       return redirect()->route('Sections.index');
-  }
-  catch
-  (\Exception $e) {
+    } catch (\Exception $e) {
       return redirect()->back()->withErrors(['error' => $e->getMessage()]);
-  }
-
+    }
   }
 
   /**
@@ -104,16 +103,12 @@ class SectionController extends Controller
     Section::findOrFail($request->id)->delete();
     toastr()->error(trans('messages.Delete'));
     return redirect()->route('Sections.index');
-
   }
 
   public function getclasses($id)
-    {
-        $list_classes = Classroom::where("Grade_id", $id)->pluck("Name", "id");
+  {
+    $list_classes = Classroom::where("Grade_id", $id)->pluck("Name", "id");
 
-        return $list_classes;
-    }
-
+    return $list_classes;
+  }
 }
-
-?>
