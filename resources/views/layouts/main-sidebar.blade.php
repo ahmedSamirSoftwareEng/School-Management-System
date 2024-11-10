@@ -64,12 +64,12 @@
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#sec-menu">
                             <div class="pull-left"><i class="ti-calendar"></i><span
-                                    class="right-nav-text">{{ trans('main_sidebar.section') }}</span></div>
+                                    class="right-nav-text">{{ trans('main_sidebar.sections') }}</span></div>
                             <div class="pull-right"><i class="ti-plus"></i></div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="sec-menu" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href={{ route('Sections.index') }}>{{ trans('main_sidebar.section_list') }} </a>
+                            <li> <a href={{ route('Sections.index') }}>{{ trans('main_sidebar.List_sections') }} </a>
                             </li>
                         </ul>
                     </li>
@@ -85,6 +85,19 @@
                         <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ route('Teachers.index') }}">{{ trans('main_sidebar.List_Teachers') }}</a>
                             </li>
+                        </ul>
+                    </li>
+                    <!-- students-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu">
+                            <div class="pull-left"><i class="fas fa-user-graduate"></i></i></i><span
+                                    class="right-nav-text">{{ trans('main_sidebar.students') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="students-menu" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="calendar.html">Events Calendar </a> </li>
+                            <li> <a href="calendar-list.html">List Calendar</a> </li>
                         </ul>
                     </li>
                     <!-- menu item Charts-->

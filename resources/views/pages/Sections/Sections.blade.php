@@ -62,6 +62,7 @@
                                                                     <th>{{ trans('Sections_trans.Name_Class') }}</th>
                                                                     <th>{{ trans('Sections_trans.Status') }}</th>
                                                                     <th>{{ trans('Sections_trans.Processes') }}</th>
+                                                                    <th>{{ trans('main_sidebar.Teachers') }}</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -93,6 +94,14 @@
                                                                                 class="btn btn-outline-danger btn-sm"
                                                                                 data-toggle="modal"
                                                                                 data-target="#delete{{ $list_Sections->id }}">{{ trans('Sections_trans.Delete') }}</a>
+                                                                        </td>
+                                                                        <td>
+                                                                            <ul>
+                                                                                @foreach ($list_Sections->Teachers as $Teacher)
+                                                                                    <li>{{ $Teacher->Name }}</li>
+                                                                                @endforeach
+                                                                            </ul>
+
                                                                         </td>
                                                                     </tr>
 
@@ -204,6 +213,28 @@
                                                                                                 <label
                                                                                                     class="form-check-label"
                                                                                                     for="exampleCheck1">{{ trans('Sections_trans.Status') }}</label>
+                                                                                            </div>
+                                                                                            <div class="col">
+                                                                                                <label for="inputName"
+                                                                                                    class="control-label">{{ trans('Sections_trans.Name_Teacher') }}</label>
+                                                                                                <select multiple
+                                                                                                    name="teacher_id[]"
+                                                                                                    class="form-control"
+                                                                                                    id="exampleFormControlSelect2">
+                                                                                                    @foreach ($list_Sections->teachers as $teacher)
+                                                                                                        <option selected
+                                                                                                            value="{{ $teacher['id'] }}">
+                                                                                                            {{ $teacher['Name'] }}
+                                                                                                        </option>
+                                                                                                    @endforeach
+
+                                                                                                    @foreach ($teachers as $teacher)
+                                                                                                        <option
+                                                                                                            value="{{ $teacher->id }}">
+                                                                                                            {{ $teacher->Name }}
+                                                                                                        </option>
+                                                                                                    @endforeach
+                                                                                                </select>
                                                                                             </div>
                                                                                         </div>
 
