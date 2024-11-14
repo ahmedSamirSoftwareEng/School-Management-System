@@ -27,5 +27,9 @@ interface StudentRepositoryInterface
 
     // show student
     public function show_student($id);
+
+    public function Upload_attachment($request);
     
+    public function Download_attachment($studentsname, $filename);
+    public function Delete_attachment($request);
 }

@@ -141,8 +141,37 @@ class StudentRepository implements StudentRepositoryInterface
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
-    public function show_student($id){
-        dd( $id);
+    public function show_student($id)
+    {
+        $Student  = Student::findOrFail($id);
+        return view('pages.Students.show', compact('Student'));
     }
 
+    public function Upload_attachment($request)
+    {
+        foreach ($request->file('photos') as $file) {
+            $name = $file->getClientOriginalName();
+            $file->storeAs('attachments/students/' . $request->student_name, $file->getClientOriginalName(), 'upload_attachments');
+
+            // insert in image_table
+            $images = new image();
+            $images->filename = $name;
+            $images->imageable_id = $request->student_id;
+            $images->imageable_type = 'App\Student';
+            $images->save();
+        }
+        toastr()->success(trans('messages.success'));
+        return redirect()->route('Students.show', $request->student_id);
+    }
+    public function Download_attachment($studentsname, $filename)
+    {
+        return response()->download(public_path("attachments/students/$studentsname/$filename"));
+    }
+
+    public function Delete_attachment($request)
+    {
+        $image = image::findorfail($request->id);
+        $image->delete();
+        return redirect()->route('Students.show', $request->student_id);
+    }
 }
