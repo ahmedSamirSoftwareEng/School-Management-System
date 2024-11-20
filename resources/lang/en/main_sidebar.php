@@ -33,8 +33,7 @@ return [
     'Settings' => 'Settings',
     'Users' => 'Users',
     'Copyright' => 'Copyright',
-    'Name_Programer' => 'SamirGamal MoraSoft All Rights Reserved',
-    'Students_management' => 'Students Management',
+    'Name_Programer' => 'SamirGamal MoraSoft All Rights Reserved'
 
 
 ];
