@@ -17,7 +17,6 @@ class FeesInvoicesController extends Controller
 
     public function index()
     {
-
         return $this->Fees_Invoices->index();
     }
 
@@ -50,6 +49,7 @@ class FeesInvoicesController extends Controller
      */
     public function show($id)
     {
+
         return $this->Fees_Invoices->show($id);
     }
 
@@ -61,7 +61,7 @@ class FeesInvoicesController extends Controller
      */
     public function edit($id)
     {
-        //
+        return $this->Fees_Invoices->edit($id);
     }
 
     /**
@@ -71,9 +71,9 @@ class FeesInvoicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        return $this->Fees_Invoices->update($request);
     }
 
     /**
@@ -82,8 +82,8 @@ class FeesInvoicesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        return $this->Fees_Invoices->destroy($request);
     }
 }
