@@ -3,7 +3,6 @@
 use Illuminate\Database\Seeder;
 use App\Section;
 use App\ClassRoom;
-use App\Grade;
 use Illuminate\Support\Facades\DB;
 
 class SectionsTableSeeder extends Seeder
@@ -17,19 +16,22 @@ class SectionsTableSeeder extends Seeder
     {
         DB::table('sections')->delete();
 
-        $Sections = [
+        $sections = [
             ['en' => 'a', 'ar' => 'ا'],
             ['en' => 'b', 'ar' => 'ب'],
-            ['en' => 'c', 'ar' => 'ت'],
         ];
 
-        foreach ($Sections as $section) {
-            Section::create([
-                'Name_Section' => $section,
-                'Status' => 1,
-                'Grade_id' => Grade::all()->unique()->random()->id,
-                'Class_id' => ClassRoom::all()->unique()->random()->id
-            ]);
+        $classrooms = ClassRoom::all(); // Fetch all classrooms
+
+        foreach ($classrooms as $classroom) {
+            foreach ($sections as $section) {
+                Section::create([
+                    'Name_Section' => $section,
+                    'Status' => 1,
+                    'Grade_id' => $classroom->grade_id, // Use the grade associated with the classroom
+                    'Class_id' => $classroom->id,       // Assign the section to the current classroom
+                ]);
+            }
         }
     }
 }
