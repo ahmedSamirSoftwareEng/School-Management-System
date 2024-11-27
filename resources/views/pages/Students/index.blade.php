@@ -81,6 +81,10 @@
                                                                     style="color: #9dc8e2"
                                                                     class="fas fa-money-bill-alt"></i>&nbsp; &nbsp;
                                                                 استبعاد رسوم</a>
+                                                            <a class="dropdown-item"
+                                                                href="{{ route('Payment_students.show', $student->id) }}"><i
+                                                                    style="color:goldenrod"
+                                                                    class="fas fa-donate"></i>&nbsp; &nbsp;سند صرف</a>
 
 
                                                             <a class="dropdown-item"
