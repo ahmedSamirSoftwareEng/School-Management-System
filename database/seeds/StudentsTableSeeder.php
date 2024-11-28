@@ -32,7 +32,7 @@ class StudentsTableSeeder extends Seeder
         $students->Date_Birth = date('1995-01-01');
         $students->Grade_id = 1;
         $students->Classroom_id =1;
-        $students->section_id = Section::all()->unique()->random()->id;
+        $students->section_id = 1;
         $students->parent_id = My_Parent::all()->unique()->random()->id;
         $students->academic_year ='2024';
         $students->save();

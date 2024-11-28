@@ -9,8 +9,8 @@ use Spatie\Translatable\HasTranslations;
 
 class Student extends Model
 {
-    use HasTranslations,SoftDeletes;
-    
+    use HasTranslations, SoftDeletes;
+
     public $translatable = ['name'];
 
     protected $guarded = [];
@@ -58,5 +58,9 @@ class Student extends Model
     {
         return $this->hasMany('App\StudentAccount', 'student_id');
     }
-    
+    // علاقة بين جدول الطلاب وجدول الحضور والغياب
+    public function attendance()
+    {
+        return $this->hasMany('App\Attendance', 'student_id');
+    }
 }
