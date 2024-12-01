@@ -85,5 +85,9 @@ Route::group(
             Route::get('Download_attachment/{studentsname}/{filename}', 'StudentController@Download_attachment')->name('Download_attachment');
             Route::post('Delete_attachment', 'StudentController@Delete_attachment')->name('Delete_attachment');
         });
+        //==============================Subjects============================
+        Route::group(['namespace' => 'Subjects'], function () {
+            Route::resource('subjects', 'SubjectController');
+        });
     }
 );
