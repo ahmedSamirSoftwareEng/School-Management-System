@@ -200,7 +200,8 @@
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Quizze-icon" class="collapse" data-parent="#sidebarnav">
-                            <li> <a href="{{ route('Quizzes.index') }}">قائمة  الاختبارات</a> </li>
+                            <li> <a href="{{ route('Quizzes.index') }}">قائمة الاختبارات</a> </li>
+                            <li> <a href="{{ route('questions.index') }}">قائمة الاسئلة</a> </li>
                         </ul>
                     </li>
                     <!-- menu font icon-->
