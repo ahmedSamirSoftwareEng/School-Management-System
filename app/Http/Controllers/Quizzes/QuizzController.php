@@ -1,29 +1,27 @@
 <?php
 
-namespace App\Http\Controllers\Exams;
+namespace App\Http\Controllers\Quizzes;
 
 use App\Http\Controllers\Controller;
-use App\Repositories\ExamRepositoryInterface;
 use Illuminate\Http\Request;
+use App\Repositories\QuizzRepositoryInterface;
 
-class ExamController extends Controller
+class QuizzController extends Controller
 {
-    protected $Exam; 
+    protected $Quizz;
 
-
-    public function __construct(ExamRepositoryInterface $Exam){
-        $this->Exam = $Exam;
-
+    public function __construct(QuizzRepositoryInterface $Quizz)
+    {
+        $this->Quizz = $Quizz;
     }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
     public function index()
     {
-        return $this->Exam->index();
+        return $this->Quizz->index();
     }
 
     /**
@@ -33,7 +31,7 @@ class ExamController extends Controller
      */
     public function create()
     {
-        return $this->Exam->create();
+        return $this->Quizz->create();
     }
 
     /**
@@ -44,7 +42,7 @@ class ExamController extends Controller
      */
     public function store(Request $request)
     {
-        return $this->Exam->store($request);
+        return $this->Quizz->store($request);
     }
 
     /**
@@ -53,7 +51,11 @@ class ExamController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
+    public function show($id)
+    {
+        //
+    }
+
     /**
      * Show the form for editing the specified resource.
      *
@@ -62,7 +64,7 @@ class ExamController extends Controller
      */
     public function edit($id)
     {
-        return $this->Exam->edit($id);
+        return $this->Quizz->edit($id);
     }
 
     /**
@@ -74,7 +76,7 @@ class ExamController extends Controller
      */
     public function update(Request $request)
     {
-        return $this->Exam->update($request);
+        return $this->Quizz->update($request);
     }
 
     /**
@@ -85,6 +87,6 @@ class ExamController extends Controller
      */
     public function destroy(Request $request)
     {
-        return $this->Exam->destroy($request);
+        return $this->Quizz->destroy($request);
     }
 }
