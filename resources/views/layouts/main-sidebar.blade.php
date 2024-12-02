@@ -63,24 +63,27 @@
                     </li>
                     <!-- Parents-->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Parents-menu">
-                            <div class="pull-left"><i class="ti-user"></i><span
-                                    class="right-nav-text">{{ trans('main_sidebar.Parents') }}</span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Parents-menu"><i
+                                class="fas fa-male"></i>{{ trans('main_sidebar.Parents') }}<div class="pull-right">
+                                <i class="ti-plus"></i>
+                            </div>
                             <div class="clearfix"></div>
                         </a>
+
                         <ul id="Parents-menu" class="collapse" data-parent="#sidebarnav">
                             <li> <a href="{{ url('add_parent') }}">{{ trans('main_sidebar.List_Parents') }}</a> </li>
                         </ul>
                     </li>
 
 
+
                     <!-- Teachers-->
                     <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Teachers-menu">
-                            <div class="pull-left"><i class="ti-user "></i></i><span
-                                    class="right-nav-text">{{ trans('main_sidebar.Teachers') }}</span></div>
-                            <div class="pull-right"><i class="ti-plus"></i></div>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#Teachers-menu"><i
+                                class="fas fa-chalkboard-teacher"></i>{{ trans('main_sidebar.Teachers') }}<div
+                                class="pull-right">
+                                <i class="ti-plus"></i>
+                            </div>
                             <div class="clearfix"></div>
                         </a>
                         <ul id="Teachers-menu" class="collapse" data-parent="#sidebarnav">
@@ -88,7 +91,7 @@
                             </li>
                         </ul>
                     </li>
-                    <!-- students-->
+
                     <!-- students-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#students-menu"><i
