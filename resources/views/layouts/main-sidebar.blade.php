@@ -204,6 +204,19 @@
                             <li> <a href="{{ route('questions.index') }}">قائمة الاسئلة</a> </li>
                         </ul>
                     </li>
+                    <!-- library-->
+                    <li>
+                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#library-icon">
+                            <div class="pull-left"><i class="fas fa-book"></i><span
+                                    class="right-nav-text">{{ trans('main_sidebar.library') }}</span></div>
+                            <div class="pull-right"><i class="ti-plus"></i></div>
+                            <div class="clearfix"></div>
+                        </a>
+                        <ul id="library-icon" class="collapse" data-parent="#sidebarnav">
+                            <li> <a href="{{ route('library.index') }}">قائمة الكتب</a> </li>
+                        </ul>
+                    </li>
+
                     <!-- menu font icon-->
                     <li>
                         <a href="javascript:void(0);" data-toggle="collapse" data-target="#font-icon">
