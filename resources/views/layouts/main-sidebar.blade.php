@@ -216,6 +216,12 @@
                             <li> <a href="{{ route('library.index') }}">قائمة الكتب</a> </li>
                         </ul>
                     </li>
+                    <!-- Settings-->
+                    <li>
+
+                        <a href="{{ route('settings.index') }}"><i class="fas fa-cogs"></i><span
+                                class="right-nav-text">{{ trans('main_sidebar.Settings') }} </span></a>
+                    </li>
 
                     <!-- menu font icon-->
                     <li>
