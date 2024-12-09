@@ -4,22 +4,22 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\Auth\LoginController;
 
 
 
 Auth::routes();
 
-Route::group(
-    [
-        'middleware' => ['guest'],
-    ],
-    function () {
-        Route::get('/', function () {
-            return view('auth.login');
-        });
-    }
-);
+Route::get('/', 'HomeController@index')->name('selection');
+
+Route::group(['namespace' => 'Auth'], function () {
+    Route::get('/login/{type}', [LoginController::class, 'loginForm'])
+        ->middleware('guest')
+        ->name('login.show');
+
+
+    Route::post('/login', 'LoginController@login')->name('login');
+});
 
 
 Route::group(
@@ -28,11 +28,12 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth'],
     ],
     function () {
+        Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
         // Route::get('/', function () {
         //     return view('dashboard');
         // });
-        Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+        // Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
 
 
         Route::group(

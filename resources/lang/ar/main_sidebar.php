@@ -38,6 +38,8 @@ return [
     'Copyright' => 'جميع الحقوق محفوظة ',
     'Name_Programer' => 'سمير جمال مورا سوفت',
     'Exams' => 'الامتحانات',
+    'Logoff' => 'تسجيل الخروج',
+'Notifications' => 'الاشعارات',
 
 
 ];
