@@ -8,7 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 
 
-Auth::routes();
+// Auth::routes();
 
 Route::get('/', 'HomeController@index')->name('selection');
 
@@ -19,6 +19,7 @@ Route::group(['namespace' => 'Auth'], function () {
 
 
     Route::post('/login', 'LoginController@login')->name('login');
+    Route::get('/logout/{type}', 'LoginController@logout')->name('logout');
 });
 
 
@@ -28,7 +29,7 @@ Route::group(
         'middleware' => ['localeSessionRedirect', 'localizationRedirect', 'localeViewPath', 'auth'],
     ],
     function () {
-        Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+        Route::get('/dashboard', 'HomeController@dashboard')->name('dashboard');
 
         // Route::get('/', function () {
         //     return view('dashboard');

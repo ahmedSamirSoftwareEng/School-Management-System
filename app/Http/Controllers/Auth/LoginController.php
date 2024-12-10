@@ -4,22 +4,32 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use App\Traits\AuthTrait;
 
 class LoginController extends Controller
 {
+    use AuthTrait;
+    public function __construct()
+    {
+        $this->middleware('guest')->except('logout');
+    }
 
     public function loginForm($type)
     {
-
         return view('auth.login', compact('type'));
     }
     public function login(Request $request)
     {
-        return $request->all();
+        if (Auth::guard($this->chekGuard($request))->attempt(['email' => $request->email, 'password' => $request->password])) {
+            return $this->redirect($request);
+        }
     }
-
-    public function __construct()
+    public function logout(Request $request, $type)
     {
-        $this->middleware('guest')->except('logout');
+        Auth::guard($type)->logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect('/');
     }
 }
