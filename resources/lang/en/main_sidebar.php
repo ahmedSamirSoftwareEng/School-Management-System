@@ -36,5 +36,6 @@ return [
     'Name_Programer' => 'SamirGamal MoraSoft All Rights Reserved',
     'Exams' => 'Exams',
     'Logoff' => 'Logoff',
-'Notifications' => 'Notifications',
+    'Notifications' => 'Notifications',
+    'Main_title' => 'MoraSoft School Management Program',
 ];

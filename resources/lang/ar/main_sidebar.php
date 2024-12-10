@@ -39,7 +39,9 @@ return [
     'Name_Programer' => 'سمير جمال مورا سوفت',
     'Exams' => 'الامتحانات',
     'Logoff' => 'تسجيل الخروج',
-'Notifications' => 'الاشعارات',
+    'Notifications' => 'الاشعارات',
+    'Main_title' => 'برنامج مورا سوفت لادارة المدارس',
+
 
 
 ];
