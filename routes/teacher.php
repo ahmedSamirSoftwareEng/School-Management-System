@@ -5,6 +5,8 @@ use App\Http\Controllers\HomeController;
 use Mcamara\LaravelLocalization\Facades\LaravelLocalization;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Auth\LoginController;
+use App\Student;
+use App\Teacher;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,7 +27,18 @@ Route::group(
     function () {
         //==============================dashboard============================
         Route::get('/teacher/dashboard', function () {
-            return view('pages.Teachers.dashboard');
+            $sections_ids = Teacher::findorfail(Auth::user()->id)->Sections()->pluck('sections.id');
+            $data['count_sections'] = $sections_ids->count();
+            $data['count_students'] = Student::whereIn('section_id', $sections_ids)->count();
+
+            return view('pages.Teachers.dashboard', $data);
+        });
+        Route::group(['namespace' => 'Teachers\dashboard'], function () {
+            //==============================students============================
+            Route::get('student', 'StudentController@index')->name('student.index');
+            Route::get('sections', 'StudentController@sections')->name('sections');
+            Route::post('attendance', 'StudentController@attendance')->name('attendance');
+            Route::post('edit_attendance', 'StudentController@editAttendance')->name('attendance.edit');
         });
     }
 );
