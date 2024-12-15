@@ -30,7 +30,7 @@
                 <div class="col-xs-12">
                     <div class="col-md-12">
                         <br>
-                        <form action="{{ route('quizzes.update', 'test') }}" method="post">
+                        <form action="{{ route('Quizzes.update', 'test') }}" method="post">
                             @csrf
                             @method('PUT')
                             <div class="form-row">
@@ -90,7 +90,7 @@
                                                 class="text-danger">*</span></label>
                                         <select class="custom-select mr-sm-2" name="Classroom_id">
                                             <option value="{{ $quizz->classroom_id }}">
-                                                {{ $quizz->classroom->Name_Class }}</option>
+                                                {{ $quizz->classroom->Name }}</option>
                                         </select>
                                     </div>
                                 </div>
