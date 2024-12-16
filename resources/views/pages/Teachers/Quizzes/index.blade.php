@@ -33,6 +33,7 @@
                                             <th>#</th>
                                             <th>اسم الاختبار</th>
                                             <th>اسم المعلم</th>
+                                            <th> اسم المادة</th>
                                             <th>المرحلة الدراسية</th>
                                             <th>الصف الدراسي</th>
                                             <th>القسم</th>
@@ -45,6 +46,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $quizze->name }}</td>
                                                 <td>{{ $quizze->teacher->Name }}</td>
+                                                <td>{{ $quizze->subject->name }}</td>
                                                 <td>{{ $quizze->grade->Name }}</td>
                                                 <td>{{ $quizze->classroom->Name }}</td>
                                                 <td>{{ $quizze->section->Name_Section }}</td>
@@ -56,6 +58,10 @@
                                                         data-toggle="modal"
                                                         data-target="#delete_exam{{ $quizze->id }}" title="حذف"><i
                                                             class="fa fa-trash"></i></button>
+                                                    <a href="{{ route('Quizzes.show', $quizze->id) }}"
+                                                        class="btn btn-warning btn-sm" title="عرض الاسئلة"
+                                                        role="button" aria-pressed="true"><i
+                                                            class="fa fa-binoculars"></i></a>
                                                 </td>
                                             </tr>
 

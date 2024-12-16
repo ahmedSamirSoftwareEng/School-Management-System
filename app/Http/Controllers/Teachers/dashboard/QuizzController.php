@@ -9,6 +9,7 @@ use App\Grade;
 use App\Subject;
 use App\Classroom;
 use App\Section;
+use App\Question;
 
 class QuizzController extends Controller
 {
@@ -67,7 +68,9 @@ class QuizzController extends Controller
      */
     public function show($id)
     {
-        //
+        $questions = Question::where('quizze_id', $id)->get();
+        $quizz = Quizze::findorFail($id);
+        return view('pages.Teachers.Questions.index', compact('questions', 'quizz'));
     }
 
     /**
@@ -124,16 +127,5 @@ class QuizzController extends Controller
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
-    }
-    public function getClassrooms($id)
-    {
-        $list_classes = Classroom::where("grade_id", $id)->pluck("Name", "id");
-        return $list_classes;
-    }
-
-    public function Get_Sections($id)
-    {
-        $list_sections = Section::where("Class_id", $id)->pluck("Name_Section", "id");
-        return $list_sections;
     }
 }
