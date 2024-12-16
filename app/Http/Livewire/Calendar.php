@@ -4,6 +4,7 @@ namespace App\Http\Livewire;
 
 use App\Event;
 use Livewire\Component;
+use SebastianBergmann\Environment\Console;
 
 class Calendar extends Component
 {
@@ -13,7 +14,6 @@ class Calendar extends Component
     public function getevent()
     {
         $events = Event::select('id', 'title', 'start')->get();
-
         return  json_encode($events);
     }
 
