@@ -21,10 +21,28 @@ class LoginController extends Controller
     }
     public function login(Request $request)
     {
-        if (Auth::guard($this->chekGuard($request))->attempt(['email' => $request->email, 'password' => $request->password])) {
+        // return $request;
+        // Validate login input
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|string',
+        ]);
+
+        // Determine the guard
+        $guard = $this->chekGuard($request);
+       
+
+        // Attempt login
+        if (Auth::guard($guard)->attempt(['email' => $request->email, 'password' => $request->password])) {
             return $this->redirect($request);
         }
+
+        // Redirect back to the login form with the type and error message
+        return redirect()->route('login.show', ['type' => $request->type])
+            ->withErrors(['email' => 'These credentials do not match our records.'])
+            ->withInput($request->only('email', 'type'));
     }
+
     public function logout(Request $request, $type)
     {
         Auth::guard($type)->logout();
