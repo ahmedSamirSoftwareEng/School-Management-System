@@ -43,6 +43,8 @@ Route::group(
             Route::post('attendance_report', 'StudentController@attendanceSearch')->name('attendance.search');
             Route::resource('Quizzes', 'QuizzController');
             Route::resource('questions', 'QuestionController');
+            Route::get('profile', 'ProfileController@index')->name('profile.show');
+            Route::post('profile/{id}', 'ProfileController@update')->name('profile.update');
         });
     }
 );
