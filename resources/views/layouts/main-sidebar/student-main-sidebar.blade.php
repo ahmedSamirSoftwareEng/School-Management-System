@@ -13,7 +13,7 @@
         <li class="mt-10 mb-10 text-muted pl-4 font-medium menu-title">{{ trans('main_sidebar.Programname') }} </li>
         <!-- الامتحانات-->
         <li>
-            <a href="{{ route('settings.index') }}"><i class="fas fa-book-open"></i><span
+            <a href="{{ route('student_exams.index') }}"><i class="fas fa-book-open"></i><span
                     class="right-nav-text">الامتحانات</span></a>
         </li>
         <!-- Settings-->

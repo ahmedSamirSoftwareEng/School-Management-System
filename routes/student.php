@@ -30,5 +30,10 @@ Route::group(
         Route::get('/student/dashboard', function () {
             return view('pages.Students.dashboard');
         });
+
+        //==============================exams============================
+        Route::group(['namespace' => 'Students\dashboard'], function () {
+            Route::resource('student_exams', 'ExamsController');
+        });
     }
 );

@@ -7,9 +7,11 @@
 @endsection
 @section('page-header')
 <!-- breadcrumb -->
-@section('PageTitle')
+<h2>
     اضافة سؤال جديد
-@stop
+
+</h2>
+
 <!-- breadcrumb -->
 @endsection
 @section('content')
@@ -45,7 +47,8 @@
 
                             <div class="form-row">
                                 <div class="col">
-                                    <label for="title">الاجابات</label>
+                                    <label for="title"> الاجابات <span style="color: red; font-size: smaller"> يجب
+                                            فصل بعلامه - بين الاسئلة</span> </label>
                                     <textarea name="answers" class="form-control" id="exampleFormControlTextarea1" rows="4"></textarea>
                                 </div>
                             </div>
