@@ -6,10 +6,11 @@
 @stop
 @endsection
 @section('page-header')
-<!-- breadcrumb -->
-@section('PageTitle')
-الفواتير الدراسية
-@stop
+<h2>
+    الفواتير الدراسية
+</h2>
+
+
 <!-- breadcrumb -->
 @endsection
 @section('content')

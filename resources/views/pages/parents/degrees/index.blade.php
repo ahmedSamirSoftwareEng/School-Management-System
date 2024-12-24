@@ -6,9 +6,11 @@
 @endsection
 @section('page-header')
     <!-- breadcrumb -->
-    @section('PageTitle')
-        قائمة نتائج الاختبارات
-    @stop
+<h2>
+            قائمة نتائج الاختبارات
+
+</h2>
+
     <!-- breadcrumb -->
 @endsection
 @section('content')
